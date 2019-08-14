@@ -12,9 +12,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+      
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(getData), name: Notification.Name("AppInput"), object: nil)
     }
+    
+    @objc func getData(){
+        lbl.text =  delegate.message
 
+    }
+    
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+   
+    
+    var msg : String?
 
+    @IBOutlet var lbl: UILabel!
+    
 }
 
